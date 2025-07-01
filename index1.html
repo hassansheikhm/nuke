@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Color Changer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body class="relative min-h-screen bg-green-500">
+
+    <h1>Eassy:</h1>
+    <h2>World's Neuculer Powers</h2>
+    <p>
+        The world's nuclear powers are countries that possess nuclear weapons and have the capability to deploy them.
+        These nations include the United States, Russia, China, France, the United Kingdom, India, Pakistan, North Korea
+    </p>
+    <img src="images/nuke.webp" alt="nuke" height="200" width="400">
+    <caption>This is Bomb</caption>
+    <!-- House with white small room and round roof -->
+    <div id="houseContainer"
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center">
+        <!-- Roof (circle) -->
+        <div id="roof"
+            class="w-32 h-16 bg-gradient-to-b from-gray-400 to-gray-700 rounded-t-full shadow-lg relative z-10"></div>
+        <!-- Room -->
+        <div class="w-24 h-24 bg-white border-4 border-gray-300 rounded-b-lg shadow-lg flex items-end justify-center relative z-0">
+            <div class="w-6 h-10 bg-gray-200 rounded-b-md mt-8"></div>
+        </div>
+    </div>
+    <div id="sparkContainer" style="position:relative;width:100vw;height:100vh;overflow:hidden;"></div>
+    <button id="sparkBtn"
+        class="fixed bottom-10 left-1/2 -translate-x-1/2 px-8 py-6 bg-green-900 text-white rounded-lg shadow-lg hover:bg-green-700 transition">
+        Blast
+    </button>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

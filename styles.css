@@ -1,0 +1,93 @@
+body {
+    background-color: #14c20e;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    color: #051a07;
+    
+    font-size: 2.5em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+h2 {
+    color: #051a07;
+    text-align: center;
+    font-size: 1.8em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.caption {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+img {
+    display:f;
+}
+
+button {
+    background-color: #043d06; /* Green */
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 25px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+    margin: 130px 550px;
+    cursor: pointer;
+
+}
+
+button:hover {
+    /* Change background color on hover */
+    background-color: #0e7a13;
+    /* Optionally, you can change the text color too */
+    color: #fff;
+}
+button:active {
+    /* Change background color on click */
+    background-color: #0a5a0f;
+    /* Optionally, you can change the text color too */
+    color: #fff;
+}
+
+.weld-spark {
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #fff200, #ff9900, #ffffff 80%);
+    box-shadow: 0 0 8px 2px #fff200, 0 0 16px 4px #ff9900;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 1000;
+    transition: opacity 0.2s;
+}
+
+.rock {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #888;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #333;
+    z-index: 10001;
+}
+.pole {
+    position: absolute;
+    width: 12px;
+    height: 60px;
+    background: #444;
+    border-radius: 4px;
+    z-index: 10001;
+}
+.road {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background: #555;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #222;
+    z-index: 10001;
+}
