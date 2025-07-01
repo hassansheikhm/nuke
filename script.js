@@ -2,6 +2,7 @@
 // <button id="sparkBtn">Generate Infinite Sparks</button>
 // <div id="sparkContainer" style="position:relative;width:100vw;height:100vh;overflow:hidden;"></div>
 // <audio id="nukeAudio" src="nukeblah.mp3" preload="auto"></audio>
+// <audio id="spaceAudio" src="space.mp3" preload="auto"></audio>
 
 document.getElementById('sparkBtn').addEventListener('click', () => {
     // Play nuke sound
@@ -88,8 +89,10 @@ document.getElementById('sparkBtn').addEventListener('click', () => {
             setTimeout(() => {
                 blast.style.opacity = 0;
                 setTimeout(() => {
-                    blast.remove();
-                    mainContent.forEach(el => el.style.opacity = 1);
+                    // Show space effect after blast
+                    showSpaceEffect();
+                    // Hide all main content
+                    mainContent.forEach(el => el.style.display = 'none');
                     document.body.style.overflow = '';
                 }, 2000);
             }, 2000);
@@ -187,5 +190,73 @@ document.getElementById('sparkBtn').addEventListener('click', () => {
     }
     for (let i = 0; i < 40; i++) {
         setTimeout(createGalaxyParticle, i * 20);
+    }
+
+    // Space effect after blast
+    function showSpaceEffect() {
+        // Remove any previous space effect
+        let oldSpace = document.getElementById('spaceEffect');
+        if (oldSpace) oldSpace.remove();
+        // Create space background
+        const space = document.createElement('div');
+        space.id = 'spaceEffect';
+        space.style.position = 'fixed';
+        space.style.left = 0;
+        space.style.top = 0;
+        space.style.width = '100vw';
+        space.style.height = '100vh';
+        space.style.background = '#000';
+        space.style.zIndex = 10010;
+        space.style.overflow = 'hidden';
+        document.body.appendChild(space);
+        // Play space music
+        const spaceAudio = document.getElementById('spaceAudio');
+        if (spaceAudio) {
+            spaceAudio.currentTime = 0;
+            spaceAudio.play();
+        }
+        // Generate fast moving stars
+        let stars = [];
+        let running = true;
+        function createStar() {
+            const star = document.createElement('div');
+            const size = Math.random() * 2 + 1;
+            star.style.position = 'absolute';
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.borderRadius = '50%';
+            star.style.background = '#fff';
+            star.style.opacity = 0.7 + Math.random() * 0.3;
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            space.appendChild(star);
+            // Star speed and direction
+            const speed = 3 + Math.random() * 7;
+            stars.push({el: star, speed, x: parseFloat(star.style.left), y: parseFloat(star.style.top)});
+        }
+        for (let i = 0; i < 120; i++) createStar();
+        // Animate stars
+        function animateStars() {
+            if (!running) return;
+            for (let s of stars) {
+                s.x += s.speed;
+                if (s.x > window.innerWidth) {
+                    s.x = -5;
+                    s.y = Math.random() * window.innerHeight;
+                }
+                s.el.style.left = s.x + 'px';
+                s.el.style.top = s.y + 'px';
+            }
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+        // Stop animation when music ends
+        if (spaceAudio) {
+            spaceAudio.onended = () => {
+                running = false;
+                space.remove();
+                // Optionally, restore main content here if needed
+            };
+        }
     }
 });
