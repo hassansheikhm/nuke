@@ -1,8 +1,16 @@
 // HTML setup (add this to your HTML file):
 // <button id="sparkBtn">Generate Infinite Sparks</button>
 // <div id="sparkContainer" style="position:relative;width:100vw;height:100vh;overflow:hidden;"></div>
+// <audio id="nukeAudio" src="nukeblah.mp3" preload="auto"></audio>
 
 document.getElementById('sparkBtn').addEventListener('click', () => {
+    // Play nuke sound
+    const nukeAudio = document.getElementById('nukeAudio');
+    if (nukeAudio) {
+        nukeAudio.currentTime = 0;
+        nukeAudio.play();
+    }
+
     // Hide all content except the blast
     document.body.style.overflow = 'hidden';
     const mainContent = Array.from(document.body.children).filter(el => el.id !== 'nukeBlast');
